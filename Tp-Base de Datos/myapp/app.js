@@ -24,18 +24,33 @@ app.get("/", (req, res, error) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/subir", (req, res) => {
-    let id = req.body.id;
+app.post("/subir/:id", (req, res) => {
+    let id = req.params['id'];
     connection.query("call subirReproducciones("+id+")", (error, results, fields) => {
         if (error) throw error;
     })
 });
 
-app.post("/datos", (req, res) => {
-    let id = req.body.id;
+app.post("/datos/:id", (req, res) => {
+    let id = req.params['id'];
     connection.query("select * from sonidos where id ="+id+";", (error, results, fields) => {
+        if (error) throw error;
         res.send(results);
     });
+});
+
+app.post("/masReproducido", (req, res) => {
+  connection.query("select * from masElegido;", (error, results, fields) => {
+      if (error) throw error;
+      res.send(results);
+  });
+});
+
+app.post("/menosReproducido", (req, res) => {
+  connection.query("select * from menosElegido;", (error, results, fields) => {
+      if (error) throw error;
+      res.send(results);
+  });
 });
 
 app.listen(port);

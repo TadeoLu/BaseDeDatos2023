@@ -1,4 +1,49 @@
+body            
+{   
+    margin:auto;
+    padding:10px;
+    font-size:14px;
+    font-family:Verdana;
+}
+
 .fila{
     padding-top: 2.5%;
     padding-bottom: 2.5%;
+}
+
+.boton{
+    border-radius: 10%;
+    border: 0px;
+    font-family: cursive;
+    background-color: #6C3428;
+    color: white;
+    width: 240px;
+    height: 120px;
+}
+
+.colInfo{
+    border: 1px;
+    border-color: #6C3428;
+    border-style: solid;
+    border-radius: 5%;
+}
+
+.nombre{
+    color: #6C3428;
+}
+
+.tipo{
+    color: #6C3428;
+}
+
+.duracion{
+    color: #6C3428;
+}
+
+.autor{
+    color: #6C3428;
+}
+
+.reproducciones{
+    color: #6C3428;
 }

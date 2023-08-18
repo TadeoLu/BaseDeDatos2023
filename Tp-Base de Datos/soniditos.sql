@@ -12,7 +12,23 @@ create table sonidos(
     cantReproducciones varchar(100)
 );
 
-insert into sonidos(nombre,src,duracion,tipo,autores,cantReproducciones) values ("trueno","Sonidos/trueno.mp3","20seg","Sonido","ni idea",0); 
+insert into sonidos(nombre,src,duracion,tipo,autores,cantReproducciones) values ("trueno","Sonidos/trueno.mp3","20seg","Sonido","Desconocido",0),
+("Alarma de Iphone","Sonidos/alarmaIphone.mp3","30seg","Alarma","Desconocido",0),
+("Despertador de Gallo","Sonidos/gallo.mp3","19seg","Despertador","Desconocido",0),
+("Grillos","Sonidos/grillos.mp3","15seg","Sonido","Desconocido",0),
+("Cancion Mario","Sonidos/mario.mp3","29seg","Cancion","Kōji Kondō",0),
+("Nextel","Sonidos/nextel.mp3","1seg","RingTone","Desconocido",0),
+("Notificacion Iphone","Sonidos/notifIphone.mp3","1seg","Notificacion","Desconocido",0),
+("Pato Donald","Sonidos/patoDonald.mp3","2seg","Audio","Desconocido",0),
+("Silbido Whatsapp","Sonidos/wharap.mp3","1seg","Sonido","Desconocido",0); 
+
+create view masElegido as
+select id,nombre,cantReproducciones from sonidos order by cantReproducciones desc limit 1;
+select * from masElegido;
+
+create view menosElegido as
+select id,nombre,cantReproducciones from sonidos order by cantReproducciones asc limit 1;
+select * from menosElegido;
 
 delimiter //
 
