@@ -9,7 +9,7 @@
     <title>Soniditos.com</title>
 </head>
 <body style="background-color: beige;">
-    <div class="container text-center">
+    <div class="container text-center contenedor-botones">
         <div class="row fila">
           <div class="col">
             <button type="button" sql="1" src="" class=" boton" id="btn1" onclick="reproducirAudio(this)">Sonido 1</button>
@@ -44,7 +44,7 @@
             </div>
         </div>
       </div>
-    <div class="container text-aling-center">
+    <div class="text-aling-center contenedor-info">
         <div class="row info">
             <div class="col colInfo">
                 <h4>
@@ -88,10 +88,10 @@
             </div>
         </div>
     </div>
-    <div class="container text-center">
+    <div class="text-center contenedor-info">
         <div class="row">
-            <div class="col text-start">
-                <div class="colInfo">
+            <div class="col text-start colInfo">
+                <div>
                     <h4>
                         Sonido mas reproducido
                     </h4>
@@ -100,15 +100,31 @@
                     </h4>
                 </div>
             </div>
-            <div class="col text-end">
-                <div class="colInfo">
+            <div class="col text-end colInfo">
+                <div >
                     <h4>
                         Sonido menos reproducido
                     </h4>
                     <h4 class="menosRep">
 
-                    </h4>
+                    </h4>row
                 </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <a href="/form">
+                <button class="boton"> Agregar Sonido</button>
+                </a>
+            </div>
+            <div class="col ">
+                <button class="boton">Cambiar Sonido</button>
+            </div>
+            <div class="col ">
+                <button class="boton">Modificar o Borrar Sonido</button>
             </div>
         </div>
     </div>

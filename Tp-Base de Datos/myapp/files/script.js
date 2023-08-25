@@ -16,7 +16,6 @@ function nombresBotones(){
             type: 'POST',
         })
         .done(function (data) {
-            console.log
             boton.innerHTML = data[0].nombre;
             boton.setAttribute("src", data[0].src);
         })
@@ -71,7 +70,7 @@ function actualizarRep(){
         url: "http://localhost:3000/masReproducido",
         type: 'POST',
     }).done(function (data) {
-        masRep.innerHTML = "Nombre " + data[0].nombre +"\n Reproducciones " + data[0].cantReproducciones;
+        masRep.innerHTML = "Nombre: " + data[0].nombre +"\n Reproducciones: " + data[0].cantReproducciones;
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.log("error, no se pudo ingresar los nuevos datos");
         console.log(jqXHR);
@@ -83,7 +82,7 @@ function actualizarRep(){
         url: "http://localhost:3000/menosReproducido",
         type: 'POST',
     }).done(function (data) {
-        menosRep.innerHTML = "Nombre " + data[0].nombre +"\n Reproducciones " + data[0].cantReproducciones;
+        menosRep.innerHTML = "Nombre: " + data[0].nombre +"\n Reproducciones: " + data[0].cantReproducciones;
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.log("error, no se pudo ingresar los nuevos datos");
         console.log(jqXHR);

@@ -1,9 +1,18 @@
 body            
-{   
-    margin:auto;
-    padding:10px;
+{
     font-size:14px;
     font-family:Verdana;
+    position: relative;
+}
+
+.contenedor-info{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.contenedor-botones{
+    margin:auto;
+    padding:10px;
 }
 
 .fila{
@@ -22,10 +31,11 @@ body
 }
 
 .colInfo{
-    border: 1px;
+    border: 2px;
     border-color: #6C3428;
     border-style: solid;
-    border-radius: 5%;
+    border-radius: 2%;
+    bottom: 0;
 }
 
 .nombre{

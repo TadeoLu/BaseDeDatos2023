@@ -9,10 +9,10 @@ create table sonidos(
     duracion VARCHAR(100),
     tipo varchar(100),
     autores varchar(100),
-    cantReproducciones varchar(100)
+    cantReproducciones int
 );
 
-insert into sonidos(nombre,src,duracion,tipo,autores,cantReproducciones) values ("trueno","Sonidos/trueno.mp3","20seg","Sonido","Desconocido",0),
+insert into sonidos(nombre,src,duracion,tipo,autores,cantReproducciones) values ("Trueno","Sonidos/trueno.mp3","20seg","Sonido","Desconocido",0),
 ("Alarma de Iphone","Sonidos/alarmaIphone.mp3","30seg","Alarma","Desconocido",0),
 ("Despertador de Gallo","Sonidos/gallo.mp3","19seg","Despertador","Desconocido",0),
 ("Grillos","Sonidos/grillos.mp3","15seg","Sonido","Desconocido",0),
