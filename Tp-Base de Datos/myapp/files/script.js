@@ -13,7 +13,7 @@ function nombresBotones(){
     for(let boton of botones){
         $.ajax({
             url: "http://localhost:3000/datos/"+boton.getAttribute("sql"),
-            type: 'POST',
+            type: 'POST'
         })
         .done(function (data) {
             boton.innerHTML = data[0].nombre;

@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const port = 3000;
 const multer = require("multer");
+const path = require("path");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -26,14 +27,13 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-app.use(express.static("files"));
+app.use(express.static(path.join(__dirname, "/files")));
 app.use(express.json());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", (req, res, error) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/files/index.html");
 });
 
 app.get("/form", (req, res, error) => {
@@ -43,6 +43,14 @@ app.get("/form", (req, res, error) => {
 app.get("/sonidos", (req, res, error) => {
     res.sendFile(__dirname + "/files/sonidos.html");
 });
+
+app.get("/gestionar/eliminar/", (req, res, error) => {
+   res.sendFile(__dirname + "/files/gestion.html");
+});
+app.get("/gestionar/modificar/", (req, res, error) => {
+    res.sendFile(__dirname + "/files/gestion.html");
+});
+
 
 app.post("/subir/:id", (req, res) => {
     let id = req.params['id'];
@@ -92,5 +100,30 @@ app.post("/uploadFile",upload.single("archivo") , (req, res) => {
     })
     res.redirect('/');
 });
+
+app.post("/getSonidos", (req, res, error) => {
+   connection.query("select * from sonidos;" , (error, result, fields) => {
+       if (error) throw error;
+       res.send(result);
+   });
+});
+
+app.delete("/gestionar/eliminar/:id", (req, res, error) => {
+    connection.query("delete from sonidos where id = "+ req.params.id + ";", (error, result, fields) => {
+        if(error) throw error;
+        res.send(result);
+    });
+
+});
+
+app.put("/gestionar/modificar/:id", (req, res, error) => {
+    connection.query("update sonidos set "+req.body.campo+" = where id = " + req.params.id, (error, result, fields) => {
+       if (error) throw error;
+       res.send(result);
+    });
+});
+
+
+
 app.listen(port);
 console.log("Server started at http://localhost:" + port);
