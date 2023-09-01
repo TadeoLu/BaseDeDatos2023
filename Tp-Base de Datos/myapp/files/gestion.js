@@ -1,7 +1,9 @@
 const lista = document.querySelector(".lista");
 const tipo = window.location.pathname.split("/",3)[2];
+const modElim = document.querySelector(".modElim");
 
 getSonidos();
+boton();
 function llenarLista(botones){
     for (let boton of botones) {
         $.ajax({
@@ -41,7 +43,7 @@ function getSonidos(){
             boton.setAttribute("sql", fila.id);
             boton.setAttribute("src", "");
             boton.setAttribute("type", "button");
-            if(tipo.equals("eliminar")) {
+            if(tipo == "eliminar") {
                 boton.setAttribute("onclick", "eliminar(this)");
             }else{
                 boton.setAttribute("onclick", "formModificar(this)");
@@ -60,19 +62,16 @@ function getSonidos(){
     });
 }
 
-function eliminar(boton){
-    let id = boton.getAttribute("sql");
-    $.ajax({
-        url: "http://localhost:3000/gestionar/eliminar/"+boton.getAttribute("sql"),
-        type: 'DELETE',
-    }).done(function (data) {
-    })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.log("error, no se pudo llenar los sonidos");
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-    });
+function boton(){
+    let a = modElim.getElementsByTagName("a")[0];
+    let b = a.getElementsByTagName("button")[0];
+    if(tipo == "eliminar"){
+        a.setAttribute("href", "/gestionar/modificar");
+        b.innerHTML = "Modificar";
+    }else{
+        a.setAttribute("href", "/gestionar/eliminar");
+        b.innerHTML = "Eliminar";
+    }
 }
 
 function eliminar(boton){
@@ -110,6 +109,6 @@ function modificar(boton, campo){
     });
 }
 
-function formModificar(){
-    window.location.replace("/gestionar/formModificar");
+function formModificar(boton){
+    window.location.replace("/gestionar/formModificar/?"+boton.getAttribute("sql"));
 }

@@ -1,5 +1,4 @@
-
-const botones = document.getElementsByClassName("boton");
+const contenedorBotones = document.querySelector(".contenedor-botones");
 const audio = new Audio();
 const nombre = document.getElementsByClassName("nombre")[0];
 const duracion = document.getElementsByClassName("duracion")[0];
@@ -8,8 +7,8 @@ const autor = document.getElementsByClassName("autor")[0];
 const reproducciones = document.getElementsByClassName("reproducciones")[0];
 const masRep = document.getElementsByClassName("masRep")[0];
 const menosRep = document.getElementsByClassName("menosRep")[0];
-nombresBotones();
-function nombresBotones(){
+getSonidos();
+function nombresBotones(botones){
     for(let boton of botones){
         $.ajax({
             url: "http://localhost:3000/datos/"+boton.getAttribute("sql"),
@@ -26,6 +25,48 @@ function nombresBotones(){
             console.log(errorThrown);
         });
     }
+}
+
+function getSonidos(){
+    let contadorFila = 0;
+    let contador = 0;
+    $.ajax({
+        url: "http://localhost:3000/getSonidos",
+        type: 'POST',
+    }).done(function (data) {
+        let row;
+        for (let fila of data){
+            if(contadorFila === 0){
+                row = document.createElement("div");
+                row.className = "row fila";
+                contenedorBotones.appendChild(row);
+            }
+            contadorFila++;
+            let col = document.createElement("div");
+            col.className = "col-4";
+            row.appendChild(col);
+            let boton = document.createElement("button");
+            boton.className = "boton";
+            boton.setAttribute("sql", fila.id);
+            boton.setAttribute("src", "");
+            boton.setAttribute("type", "button");
+            boton.setAttribute("onclick", "reproducirAudio(this)");
+            col.appendChild(boton);
+            if(contadorFila === 3){
+                contadorFila = 0;
+            }
+            contador++;
+            if(contador === 9){
+                break;
+            }
+        }
+        nombresBotones(document.getElementsByClassName("boton"));
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("error, no se pudo traer los sonidos");
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+    });
 }
 
 function reproducirAudio(boton){
