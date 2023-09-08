@@ -1,0 +1,30 @@
+body{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+}
+
+.contenedor{
+    background-color: #6C3428;
+    padding: 15px;
+    border-radius: 20px;
+    color: white;
+}
+
+.textForm{
+    border: 0px;
+    width: 50rem;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.boton{
+    border-radius: 5%;
+    border: 0px;
+    font-family: cursive;
+    background-color: #fff0c9;
+    color: black;
+    width: 100px;
+    height: 50px;
+}

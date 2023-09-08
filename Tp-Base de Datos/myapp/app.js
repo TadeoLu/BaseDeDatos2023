@@ -40,6 +40,10 @@ app.get("/form", (req, res, error) => {
     res.sendFile(__dirname + "/files/form.html");
 });
 
+app.get("/gestionar/formModificar", (req, res, error) => {
+    res.sendFile(__dirname + "/files/formModificar.html");
+});
+
 app.get("/sonidos", (req, res, error) => {
     res.sendFile(__dirname + "/files/sonidos.html");
 });
