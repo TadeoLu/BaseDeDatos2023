@@ -117,11 +117,10 @@ app.delete("/gestionar/eliminar/:id", (req, res, error) => {
         if(error) throw error;
         res.send(result);
     });
-
 });
 
 app.put("/gestionar/modificar/:id", (req, res, error) => {
-    connection.query("update sonidos set "+req.body.campo+" = where id = " + req.params.id, (error, result, fields) => {
+    connection.query("update sonidos set "+req.body.campo+" = '"+ req.body.valor +"' where id = " + req.params.id, (error, result, fields) => {
        if (error) throw error;
        res.send(result);
     });

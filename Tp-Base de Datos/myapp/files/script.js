@@ -7,6 +7,16 @@ const autor = document.getElementsByClassName("autor")[0];
 const reproducciones = document.getElementsByClassName("reproducciones")[0];
 const masRep = document.getElementsByClassName("masRep")[0];
 const menosRep = document.getElementsByClassName("menosRep")[0];
+const url =(window.location.search.slice(1,window.location.search.length).split(","));
+let idsSonidos = [];
+if(window.location.search === "") {
+    idsSonidos = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+}else{
+    for(let i of url){
+        idsSonidos.push(Number(i));
+    }
+}
+
 getSonidos();
 function nombresBotones(botones){
     for(let boton of botones){
@@ -36,6 +46,9 @@ function getSonidos(){
     }).done(function (data) {
         let row;
         for (let fila of data){
+            if(!idsSonidos.includes(fila.id)){
+                continue;
+            }
             if(contadorFila === 0){
                 row = document.createElement("div");
                 row.className = "row fila";
@@ -56,7 +69,7 @@ function getSonidos(){
                 contadorFila = 0;
             }
             contador++;
-            if(contador === 9){
+            if(contador > 9){
                 break;
             }
         }

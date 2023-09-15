@@ -1,5 +1,5 @@
 const lista = document.querySelector(".lista");
-let isDragging = false;
+const eleccion = [];
 getSonidos();
 function llenarLista(botones){
     for (let boton of botones) {
@@ -40,11 +40,7 @@ function getSonidos(){
             boton.setAttribute("sql", fila.id);
             boton.setAttribute("src", "");
             boton.setAttribute("type", "button");
-            boton.addEventListener("mousedown", (e) => {
-                let esto = boton;
-                isDragging = true;
-                esto.style.cursor = "grabbing";
-            });
+            boton.setAttribute("onclick", "elegir(this)")
             col.appendChild(boton);
             if(contador === 4){
                 contador = 0;
@@ -59,34 +55,23 @@ function getSonidos(){
     });
 }
 
-
-document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-        boton.style.left = e.clientX - boton.clientWidth / 2 + "px";
-        boton.style.top = e.clientY - boton.clientHeight / 2 + "px";
-    }
-});
-
-document.addEventListener("mouseup", (boton) => {
-    if (isDragging) {
-        isDragging = false;
-        boton.style.cursor = "grab";
-
-        if (isInsideContainer(boton, contenedor)) {
-            contenedor.appendChild(boton);
-            boton.style.position = "static";
+function elegir(boton) {
+    if(eleccion.length < 9) {
+        if (!boton.classList.contains("seleccionado")) {
+            eleccion.push(boton.getAttribute("sql"));
+            boton.classList.add("seleccionado");
+        } else {
+            let index = eleccion.indexOf(boton.getAttribute("sql"));
+            eleccion.splice(index, 1);
+            boton.classList.remove("seleccionado");
         }
+    }else {
+        enviar();
     }
-});
+}
 
-function isInsideContainer(element, container) {
-    const elementRect = element.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
 
-    return (
-        elementRect.left >= containerRect.left &&
-        elementRect.right <= containerRect.right &&
-        elementRect.top >= containerRect.top &&
-        elementRect.bottom <= containerRect.bottom
-    );
+function enviar(){
+
+    window.location.replace("http://localhost:3000/?" + eleccion.toString())
 }

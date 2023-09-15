@@ -1,13 +1,3 @@
-.boton-vacio{
-    border-radius: 10%;
-    font-family: cursive;
-    border: dotted 5px;
-    background-color: #fff0c9;
-    border-color: #6C3428;
-    width: 240px;
-    height: 120px;
-    color: black;
-}
 
 .boton-lleno{
     border-radius: 10%;
@@ -27,4 +17,8 @@
 .fila{
     padding-top: 1%;
     padding-bottom: 1%;
+}
+
+.seleccionado{
+    background-color: #e0725d;
 }
